@@ -1,55 +1,60 @@
-function loadingGif() {
-    let timerInterval
-Swal.fire({
-  title: 'Sending...',
-  html: '',
-  timer: 40000,
-  timerProgressBar: true,
-  didOpen: () => {
-    Swal.showLoading()
-   
-  },
-  willClose: () => {
-    clearInterval(timerInterval)
+let modalInstance;
+function loadingGif(data) {
+  modalInstance = Swal.fire({
+    title: "Sending...",
+    html: "",
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  });
+}
+function errorFunction() {
+  modalInstance = Swal.fire({
+    title: "<strong>Data must be filled in.</u></strong>",
+    icon: "info",
+  });
+  document.getElementById("text").style.border = "2px solid red";
+}
+
+function splitContent(answer) {
+  if(JSON.stringify(answer).includes(`I'm sorry, but I can't assist`) ||JSON.stringify(answer).includes(`The context provided does not contain enough information to create a summar`)){
+    modalInstance = Swal.fire({
+      title:JSON.parse(answer)['out-0'] ,
+      icon: "warning",
+    });
+    document.getElementById("text").style.border = "2px solid red";
+  }else{
+    document.getElementById("cards").style.display = "flex";
+    const test2 = JSON.stringify(answer)
+      .replaceAll("\\n", "")
+      .replaceAll("\\", "")
+      .replaceAll('"', "")
+      .replaceAll("{", "")
+      .replaceAll("}", "")
+      .replaceAll("\\n", "")
+      .replaceAll("nn", "");
+  
+    let summaryIndex = test2.indexOf("Summary:");
+    let sentimentIndex = test2.indexOf("Sentiment Analysis:");
+    let tweetsIndex = test2.indexOf("Tweets:");
+    let blogPostIndex = test2.indexOf("Blog Post Entry:");
+  
+    document.getElementById("summary").innerHTML = test2
+      .slice(summaryIndex, sentimentIndex)
+      .replace("Summary:", "");
+  
+    document.getElementById("sentiment").innerHTML = test2
+      .slice(sentimentIndex, tweetsIndex)
+      .replace("Sentiment Analysis:", "");
+  
+    document.getElementById("tweet").innerHTML = test2
+      .slice(tweetsIndex, blogPostIndex)
+      .replace("Tweets:", "")
+  
+    document.getElementById("blog").innerHTML = test2
+      .slice(blogPostIndex)
+      .replace("Blog Post Entry:", "");
   }
-})}
-function splitContent(){
-  const test=  `Summary:
-  The speaker at the Archdiocesan Discipleship Conference shares a personal story about a family trip to the UK. Feeling nervous about the journey, the speaker prays for a successful trip and for their Uber ride to the airport to accommodate their large family and luggage. They receive a text message stating that their Uber driver, named Jesus, is arriving in a Toyota Highlander. The speaker humorously interprets this as a divine sign, and shares this story with their children. They eventually reach the UK and have a great time.
-  Sentiment Analysis:
-  The overall sentiment of the text is positive. The speaker expresses initial anxiety about the trip, but this is replaced with humor and joy after interpreting their Uber driver's arrival as a divine sign. The successful trip to the UK further contributes to the positive sentiment.
-  Tweets:
-  1. "When you're nervous about a trip and your Uber driver named Jesus shows up in a Toyota Highlander. #DivineIntervention #TravelStories"
-  2. "Prayed for a successful family trip to the UK and got more than we bargained for. Our Uber driver Jesus turned out to be our guardian angel. #Blessed #FamilyVacation"
-  3. "Who says miracles don't happen? Our Uber to the airport was a Toyota Highlander driven by Jesus. #Miracles #TravelDiaries"
-  Blog Post Entry:
-  "Title: A Divine Ride to the Airport
-  During our family trip to the UK, we experienced something extraordinary. On the day of our departure, filled with anxiety, we prayed for a successful journey. As we waited for our Uber, a text message popped up on my phone - 'Jesus is arriving soon in a Toyota Highlander.' We couldn't help but see this as a divine sign. Our ride to the airport was filled with laughter and joy as we shared this humorous coincidence with our children. This unexpected event not only eased our travel anxiety but also made our trip to the UK even more memorable. It's moments like these that remind us of the unexpected joys of travel and the divine humor that life sometimes throws our way."`
-    const summaryIndex=test.indexOf('Summary:');
-    const sentimentIndex=test.indexOf('Sentiment Analysis:');
-    const tweetsIndex=test.indexOf('Tweets:');
-    const blogPostIndex=test.indexOf('Blog Post Entry:');
-    const summaryContent=test.slice(summaryIndex,sentimentIndex).replace('Summary:','');
-    console.log(summaryContent);
-
+ 
 }
-
-function queryResponse(result)
-{
-    const x = JSON.parse(result);
-    if(result && result!=undefined ){
-         const AnswerDiv = document.getElementById('div-answer');
-    const AnswerField =document.getElementById('text-answer')
-    AnswerDiv.style.display = 'block';
-    AnswerField.value=x["out-0"]
-    }else{
-        Swal.fire({
-  icon: 'error',
-  title: 'Oops...',
-  text:result,
-})
-    }
-   
-    
-}
-

@@ -71,8 +71,7 @@ async function query(data) {
 
 // PRUEBA DAYANNA
 async function query(data) {
-    loadingGif();
-
+    document.getElementById("text").value ? loadingGif(data) : errorFunction();
     const response = await fetch(
     "https://www.stack-inference.com/run_deployed_flow?flow_id=64e129bad97081da614b9e7d&org=bf58ceee-e9bc-4f8b-9675-d4a90250141d",
     {
@@ -84,8 +83,7 @@ async function query(data) {
         body: JSON.stringify(data),
     }
     );
-   // document.querySelector('.swal2-container').remove();
-    
+    modalInstance.close()
     const result = await response.json();
     return result;
 }
@@ -112,7 +110,7 @@ function send() {
 
     // DAYANNA
     query({"in-0": `Read this text and do a summary, do a sentiment analysis and give me 3 tweets and 1 blog post entry.`, "indoc-1": text}).then((response) => {
-        queryResponse(JSON.stringify(response))
+        splitContent(JSON.stringify(response))
         console.log(JSON.stringify(response));
     });
 }
