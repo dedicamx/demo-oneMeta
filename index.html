@@ -2,9 +2,170 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Test</title>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background-color: black;
+            font-family: 'Poppins', sans-serif;
+        }
+        h1,h2 {
+            font-weight: 400;
+    display: unset;
+    color: rgb(255, 255, 255);
+        }
+        #title{
+            font-size: 38px;
+             text-align: center;
+        }
+        *, *::before, *::after {
+  box-sizing: border-box;
+}
 
-</body>
+
+.container, .backdrop, textarea {
+  width: 90%;
+  height: 180px;
+ }
+
+.highlights, textarea {
+  padding: 10px;
+  font: 20px/28px 'Open Sans', sans-serif;
+  letter-spacing: 1px;
+  
+}
+
+.container {
+  display: block;
+  margin: 0 auto;
+  transform: translateZ(0);
+  -webkit-text-size-adjust: none;
+  align-items: center;
+  justify-content: center;
+display: flex;
+}
+
+.backdrop {
+  position: absolute;
+  z-index: 1;
+  border: 2px solid #4006e7;
+  background-color: #fff;
+  overflow: auto;
+  pointer-events: none;
+  transition: transform 1s;
+}
+
+.highlights {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: transparent;
+}
+
+textarea {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  border: 2px solid #4006e7;
+  border-radius: 0;
+  color: #444;
+  background-color: transparent;
+  overflow: auto;
+  resize: none;
+  transition: transform 1s;
+}
+
+mark {
+  border-radius: 3px;
+  color: transparent;
+  background-color: #b1d5e5;
+}
+
+button {
+  display: block;
+  width: 300px;
+  margin: 30px auto 0;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  background-color: #4006e7;
+  font: 18px 'Opens Sans', sans-serif;
+  letter-spacing: 1px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.perspective .backdrop {
+  transform:
+    perspective(1500px)
+    translateX(-125px)
+    rotateY(45deg)
+    scale(.9);
+}
+
+.perspective textarea {
+  transform:
+    perspective(1500px)
+    translateX(155px)
+    rotateY(45deg)
+    scale(1.1);
+}
+
+textarea:focus, button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4006e7;
+}
+    </style>
+</head>
+<body >
+    <header>
+        <div >
+            <img src="img/logo.webp">    
+        </div>
+    </header>
+    
+    <div>
+        <div id="title">
+                    <h1 >
+                        <span style="color:blue;" >DEMO</span>
+                        <span>TRANSCRIPTION</span>
+                    </h1>
+
+        </div>
+        
+        <div class="container">
+            <div style="display: none;">
+                <button class="btn btn-primary" onclick="getMic()" style="color: #fff;">rec</button>
+
+            </div>
+            <div class="backdrop">
+              <div class="highlights"></div>
+            </div>
+            <textarea id="text"></textarea>
+          </div>
+          <div class="col-3" style="align-items: center;
+          justify-content: center;display: none;">
+            <select class="custom-select form-control" id="inputGroupSelect01"  style="height: 30px">
+              <option selected value="Choose...">Language to translate</option>
+            </select>
+          </div>
+
+          <button id="btn">Process</button>
+        </div>
+
+        <div class="container" style="padding-top: 10%; padding-bottom: 10%;    display: none; "id="div-answer"  >
+            <div class="backdrop">
+              <div class="highlights"></div>
+            </div>
+            <textarea  style="  box-shadow: 0 0 0 2px greenyellow;" id="text-answer"></textarea>
+        </div>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="index.js"></script>
+<script src="utils.js"></script>
+
