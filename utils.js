@@ -18,13 +18,18 @@ function errorFunction() {
 }
 
 function splitContent(answer) {
-  if(JSON.stringify(answer).includes(`I'm sorry, but I can't assist`) ||JSON.stringify(answer).includes(`The context provided does not contain enough information to create a summar`)){
+  if (
+    JSON.stringify(answer).includes(`I'm sorry, but I can't assist`) ||
+    JSON.stringify(answer).includes(
+      `The context provided does not contain enough information to create a summar`
+    )
+  ) {
     modalInstance = Swal.fire({
-      title:JSON.parse(answer)['out-0'] ,
+      title: JSON.parse(answer)["out-0"],
       icon: "warning",
     });
     document.getElementById("text").style.border = "2px solid red";
-  }else{
+  } else {
     document.getElementById("cards").style.display = "flex";
     const test2 = JSON.stringify(answer)
       .replaceAll("\\n", "")
@@ -34,27 +39,26 @@ function splitContent(answer) {
       .replaceAll("}", "")
       .replaceAll("\\n", "")
       .replaceAll("nn", "");
-  
+
     let summaryIndex = test2.indexOf("Summary:");
     let sentimentIndex = test2.indexOf("Sentiment Analysis:");
     let tweetsIndex = test2.indexOf("Tweets:");
     let blogPostIndex = test2.indexOf("Blog Post Entry:");
-  
+
     document.getElementById("summary").innerHTML = test2
       .slice(summaryIndex, sentimentIndex)
       .replace("Summary:", "");
-  
+
     document.getElementById("sentiment").innerHTML = test2
       .slice(sentimentIndex, tweetsIndex)
       .replace("Sentiment Analysis:", "");
-  
+
     document.getElementById("tweet").innerHTML = test2
       .slice(tweetsIndex, blogPostIndex)
-      .replace("Tweets:", "")
-  
+      .replace("Tweets:", "");
+
     document.getElementById("blog").innerHTML = test2
       .slice(blogPostIndex)
       .replace("Blog Post Entry:", "");
   }
- 
 }
