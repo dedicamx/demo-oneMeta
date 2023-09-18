@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+    integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: black;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    h1,
+    h2 {
+      font-weight: 400;
+      display: unset;
+      color: rgb(255, 255, 255);
+    }
+
+    #title {
+      font-size: 38px;
+      text-align: center;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+
+    .container,
+    .backdrop,
+    textarea {
+      width: 90%;
+      height: 180px;
+    }
+
+    .highlights,
+    textarea {
+      padding: 10px;
+      font: 20px/28px 'Open Sans', sans-serif;
+      letter-spacing: 1px;
+
+    }
+
+    .container {
+      display: block;
+      margin: 0 auto;
+      transform: translateZ(0);
+      -webkit-text-size-adjust: none;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+    }
+
+    .backdrop {
+      position: absolute;
+      z-index: 1;
+      border: 2px solid #116dff;
+      background-color: #fff;
+      overflow: auto;
+      pointer-events: none;
+      transition: transform 1s;
+    }
+
+    .highlights {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: transparent;
+    }
+
+    textarea {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      margin: 0;
+      border: 2px solid #116dff;
+      border-radius: 0;
+      color: #444;
+      background-color: transparent;
+      overflow: auto;
+      resize: none;
+      transition: transform 1s;
+    }
+
+    mark {
+      border-radius: 3px;
+      color: transparent;
+      background-color: #b1d5e5;
+    }
+
+    button {
+      display: block;
+      width: 300px;
+      margin: 30px auto 0;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      background-color: #116dff;
+      font: 18px 'Opens Sans', sans-serif;
+      letter-spacing: 1px;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .perspective .backdrop {
+      transform:
+        perspective(1500px) translateX(-125px) rotateY(45deg) scale(.9);
+    }
+
+    .perspective textarea {
+      transform:
+        perspective(1500px) translateX(155px) rotateY(45deg) scale(1.1);
+    }
+
+    textarea:focus,
+    button:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #116dff;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10%;
+      padding-bottom: 3%;
+    }
+
+    .column {
+      flex: 1;
+      padding: 15px;
+      margin: 0 10px;
+      background-color: #0e1110;
+      box-sizing: border-box;
+      box-shadow: 0 0 0 1px #161817;
+    }
+
+    p {
+      color: #8A8A8A;
+      font-family: sans-serif;
+      font-size: 16px;
+    }
+
+    .column h2 {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div>
+      <img src="img/logo.webp">
+    </div>
+  </header>
+
+  <div>
+    <div id="title">
+      <h1>
+        <span style="color:#116dff;">DEMO</span>
+        <span>TRANSCRIPTION</span>
+      </h1>
+
+    </div>
+
+    <div class="container">
+      <div style="display: none;">
+        <button class="btn btn-primary" onclick="getMic()" style="color: #fff;">rec</button>
+
+      </div>
+      <div class="backdrop">
+        <div class="highlights"></div>
+      </div>
+      <textarea id="text" placeholder="Add your conversation..."></textarea>
+    </div>
+    <div class="col-3" style="align-items: center;
+          justify-content: center;display: none;">
+      <select class="custom-select form-control" id="inputGroupSelect01" style="height: 30px">
+        <option selected value="Choose...">Language to translate</option>
+      </select>
+    </div>
+
+    <button id="btn">Process</button>
+  </div>
+  <div class="row" style="display: none;" id="cards">
+    <div class="column">
+      <div style="display: flex;align-items: center;justify-content: center;gap: 10px;">
+        <img src="./img/contrato.png" alt="" srcset="">
+        <h2>Summary </h2>
+
+      </div>
+      <p id="summary"></p>
+    </div>
+    <div class="column">
+      <div style="display: flex;align-items: center;justify-content: center;gap: 10px;">
+        <img src="./img/solo.png" alt="" srcset="">
+        <h2>Sentiment Analysis</h2>
+
+      </div>
+      <p id="sentiment"></p>
+    </div>
+    <div class="column">
+      <div style="display: flex;align-items: center;justify-content: center;gap: 10px;">
+        <img src="./img/retuitear.png" alt="" srcset="">
+        <h2>Tweets</h2>
+
+      </div>
+      <p id="tweet"></p>
+    </div>
+    <div class="column">
+      <div style="display: flex;align-items: center;justify-content: center;gap: 10px;">
+        <img src="./img/blog.png" alt="" srcset="" width="24px" height="24px">
+        <h2>Blog Post Entry</h2>
+
+      </div>
+      <p id="blog"></p>
+    </div>
+  </div>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="index.js"></script>
+<script src="utils.js"></script>
