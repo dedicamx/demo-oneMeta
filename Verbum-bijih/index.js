@@ -20,8 +20,19 @@ function send() {
   const text = document.getElementById("text").value;
   console.log("Sending...");
 
-  query({
-    "in-0": `Read this text and do a summary, do a sentiment analysis and give me 3 tweets and 1 blog post entry.`,
+  query({"in-0": `Read this text, which is a conversation, do a summary, write the sentiment analysis and detect the following:
+    Nature and impact of sexual harassment
+    Sexism
+    Bullying
+    Exclusion
+    Racism
+    Homophobia
+    Strengths of workplace culture
+    Respect and inclusion
+    Reporting process
+    Awareness of initiatives to prevent – address bullying, sexual harassment, discrimination
+    Effectiveness and Impact of initiatives.
+    Then Provide Recommendations for change`,
     "indoc-1": text,
   }).then((response) => {
     splitContent(JSON.stringify(response));
