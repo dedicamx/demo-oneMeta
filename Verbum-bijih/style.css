@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(245, 245, 246);
+  font-family: Arial, sans-serif;
+  max-height: 100vh;
+  font-size: smaller;
+  color: black;
+  padding-bottom: 5%;
+}
+
+#container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: white;
+  border-bottom: solid rgba(212, 212, 212, 0.475);
+  padding: 1.5%;
+  width: 100%;
+}
+
+#box {
+  padding: 20px; /* Ajusta el espacio */
+  width: 50%; /* Ajusta el ancho */
+  border-radius: 10px;
+  border: 4px solid rgba(212, 212, 212, 0.475); /* Corrección en la propiedad */
+  background-color: white;
+  /* margin-left: auto;
+  margin-right: auto; */
+  padding-inline: 50px;
+}
+
+#img-div img {
+  width: 20%; /* Ajusta el ancho */
+  padding: 2% 5% 3%; /* Ajusta el espacio */
+}
+
+.input-contain {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  height: 1.5rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  padding: 5px;
+  font-size: 1.4rem;
+  transition: border-color 0.2s ease-out;
+  display: block;
+  outline: none;
+  border: 3px solid rgb(208, 207, 207);
+  background-color: aliceblue;
+}
+
+input + .placeholder-text .text,
+:not(input[value=""]) + .placeholder-text .text {
+  background-color: white;
+  font-size: 1rem;
+  color: black;
+  transform: translate(0, -20%); /* Ajusta la posición del texto */
+}
+
+input + .placeholder-text .text {
+  color: black;
+}
+
+.placeholder-text {
+  position: absolute;
+  top: 0;
+  left: 10px; /* Ajusta la posición del texto */
+  background-color: transparent;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  transition: transform 0.15s ease-out, font-size 0.15s ease-out,
+    background-color 0.2s ease-out, color 0.15s ease-out;
+}
+
+.text {
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  background-color: transparent;
+  color: black;
+  transition: font-size 0.15s ease-out, background-color 0.2s ease-out,
+    color 0.15s ease-out;
+}
+
+/* Estilo para pantallas pequeñas */
+@media (max-width: 40rem) {
+  #img-div img {
+    width: 10%;
+    padding: 2% 5% 3%;
+  }
+}
+.btn {
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.primary {
+  background-color: #007bff;
+}
+.primary:hover {
+  background: #0b7dda;
+}
+textarea {
+  resize: none;
+  width: 100%;
+}
