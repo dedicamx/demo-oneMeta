@@ -35,7 +35,7 @@ body {
 }
 
 #img-div img {
-  width: 20%; /* Ajusta el ancho */
+  width: 10%; /* Ajusta el ancho */
   padding: 2% 5% 3%; /* Ajusta el espacio */
 }
 
@@ -102,7 +102,7 @@ input + .placeholder-text .text {
 .btn {
   border: none;
   color: white;
-  padding: 10px 15px;
+  padding: 9px 15px;
   cursor: pointer;
   border-radius: 5px;
   font-weight: bold;
