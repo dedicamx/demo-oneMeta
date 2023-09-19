@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -15,43 +15,55 @@
 <body><div class="navbar">
         </div>
 
-        <div id="img-div">
-            <img src="img/logo.png" alt="">
-        </div>
+<div id="img-div">
+    <img src="img/logo.png" alt="">
+</div>
+
+<body>
     <div id="container">
-        
-
         <div id="box">
-            <div id="">
-                <img src="img/logo_Bijih.png" alt="" width="10%">
+            <div id="password-prompt">
+                <label for="password">Enter password: </label>
+                <input type="password" id="password">
+                <button onclick="checkPassword()">Submit</button>
             </div>
-            <h2>Insights</h2>
-            <div class="input-contain">
-                <input type="text" id="text" name="fname" autocomplete="off" value=""
-                    aria-labelledby="placeholder-fname">
-                <label class="placeholder-text" for="fname" id="placeholder-fname">
-                    <div class="text">Paste here the transcript</div>
-                </label>
+        
+            <div id="app-content" style="display: none;">
+
+                <div id="">
+                    <img src="img/logo_Bijih.png" alt="" width="10%">
+                </div>
+                <h2>Insights</h2>
+                <div class="input-contain">
+                    <input type="text" id="text" name="fname" autocomplete="off" value=""
+                        aria-labelledby="placeholder-fname">
+                    <label class="placeholder-text" for="fname" id="placeholder-fname">
+                        <div class="text">Paste here the transcript</div>
+                    </label>
+                </div>
+                <p style="font-weight: bold;">Result</p>
+
+                <div style="padding-bottom: 3%;">
+                    <textarea name="" id="response" cols="92" rows="10" disabled
+                        style=" border: 3px solid  rgb(208, 207, 207)!important; background-color: white; border-radius: 0;"></textarea>
+                </div>
+                <button class="btn primary" id="btn">
+                    <img src="img/boton-de-play.png" alt="Texto Alternativo de la Imagen">
+
+                    Run</button>
+
+                <footer>
+                </footer>
+
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script src="index.js"></script>
+                <script src="utils.js"></script>
             </div>
-            <p style="font-weight: bold;">Result</p>
 
-            <div style="padding-bottom: 3%;">
-                <textarea name="" id="response" cols="92" rows="10" disabled
-                    style=" border: 3px solid  rgb(208, 207, 207)!important; background-color: white; border-radius: 0;"></textarea>
-            </div>
-            <button class="btn primary" id="btn">
-                <img src="img/boton-de-play.png" alt="Texto Alternativo de la Imagen">
-
-                Run</button>
-
+            <script src="login.js"></script>
         </div>
-        <footer>
-        </footer>
     </div>
-
+    </body>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="index.js"></script>
-<script src="utils.js"></script>
 
 </html>
