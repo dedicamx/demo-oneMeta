@@ -23,9 +23,13 @@
     <div id="container">
         <div id="box">
             <div id="password-prompt">
-                <label for="password">Enter password: </label>
+                <h3>Enter password:</h3>
                 <input type="password" id="password">
-                <button onclick="checkPassword()">Submit</button>
+                <div style="padding-top: 2%;">
+                <button class="btn primary" onclick="checkPassword()" >
+                 Submit
+                    </button>
+                </div>
             </div>
         
             <div id="app-content" style="display: none;">
@@ -45,7 +49,7 @@
 
                 <div style="padding-bottom: 3%;">
                     <textarea name="" id="response" cols="92" rows="10" disabled
-                        style=" border: 3px solid  rgb(208, 207, 207)!important; background-color: white; border-radius: 0;"></textarea>
+                        style=" border: 3px solid  rgb(208, 207, 207)!important; background-color: white; border-radius: 0;color: black;"></textarea>
                 </div>
                 <button class="btn primary" id="btn">
                     <img src="img/boton-de-play.png" alt="Texto Alternativo de la Imagen">
@@ -65,5 +69,4 @@
     </div>
     </body>
 </body>
-
 </html>
