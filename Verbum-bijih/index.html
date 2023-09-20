@@ -12,61 +12,85 @@
 
 </head>
 
-<body><div class="navbar">
-        </div>
-
-<div id="img-div">
-    <img src="img/logo.png" alt="">
-</div>
-
 <body>
-    <div id="container">
-        <div id="box">
-            <div id="password-prompt">
-                <h3>Enter password:</h3>
-                <input type="password" id="password">
-                <div style="padding-top: 2%;">
-                <button class="btn primary" onclick="checkPassword()" >
-                 Submit
-                    </button>
-                </div>
-            </div>
-        
-            <div id="app-content" style="display: none;">
-
-                <div id="">
-                    <img src="img/logo_Bijih.png" alt="" width="10%">
-                </div>
-                <h2>Insights</h2>
-                <div class="input-contain">
-                    <input type="text" id="text" name="fname" autocomplete="off" value=""
-                        aria-labelledby="placeholder-fname">
-                    <label class="placeholder-text" for="fname" id="placeholder-fname">
-                        <div class="text">Paste here the transcript</div>
-                    </label>
-                </div>
-                <p style="font-weight: bold;">Result</p>
-
-                <div style="padding-bottom: 3%;">
-                    <textarea name="" id="response" cols="92" rows="10" disabled
-                        style=" border: 3px solid  rgb(208, 207, 207)!important; background-color: white; border-radius: 0;color: black;"></textarea>
-                </div>
-                <button class="btn primary" id="btn">
-                    <img src="img/boton-de-play.png" alt="Texto Alternativo de la Imagen">
-
-                    Run</button>
-
-                <footer>
-                </footer>
-
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                <script src="index.js"></script>
-                <script src="utils.js"></script>
-            </div>
-
-            <script src="login.js"></script>
-        </div>
+    <div class="navbar">
     </div>
+
+    <div id="img-div">
+        <img src="img/logo.png" alt="">
+    </div>
+
+    <body>
+        <div id="container">
+            <div id="box">
+                <div id="password-prompt">
+                    <h3>Enter password:</h3>
+                    <input type="password" id="password">
+                    <div style="padding-top: 2%;">
+                        <button class="btn primary" onclick="checkPassword()">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+
+                <div id="app-content" style="display: none;">
+
+                    <div id="">
+                        <img src="img/logo_Bijih.png" alt="" width="10%">
+                    </div>
+                    <h2>Insights</h2>
+                    <div class="input-contain">
+                        <input type="text" id="text" name="fname" autocomplete="off" value=""
+                            aria-labelledby="placeholder-fname">
+                        <label class="placeholder-text" for="fname" id="placeholder-fname">
+                            <div class="text">Paste here the transcript</div>
+                        </label>
+                    </div>
+                    <p style="font-weight: bold;">Result</p>
+
+                    <div style="padding-bottom: 3%;">
+                        <textarea name="" id="response" cols="92" rows="10" disabled
+                            style=" border: 3px solid  rgb(208, 207, 207)!important; background-color: white; border-radius: 0;color: black;"></textarea>
+                    </div>
+                    <button class="btn primary" id="btn">
+                        <img src="img/boton-de-play.png" alt="Texto Alternativo de la Imagen">
+
+                        Run</button>
+
+                    <footer>
+                    </footer>
+
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script src="index.js"></script>
+                    <script src="utils.js"></script>
+                </div>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                <script>
+                    $(document).ready(function () {
+                        const storedSession = localStorage.getItem("session");
+                        if (storedSession) {
+                            const sessionData = JSON.parse(storedSession);
+                            if (sessionData.expirationTime > new Date().getTime()) {
+                                document.getElementById("password-prompt").style.display = "none";
+                                document.getElementById("app-content").style.display = "block";
+                            } else {
+                                endSession();
+                            }
+                        }
+
+                        function endSession() {
+                            localStorage.removeItem("session");
+                            document.getElementById("app-content").style.display = "none";
+                            document.getElementById("password-prompt").style.display = "block";
+                        }
+                    });
+                </script>
+                <script src="login.js"></script>
+
+            </div>
+        </div>
     </body>
 </body>
+
 </html>
