@@ -21,7 +21,7 @@ function send() {
   console.log("Sending...");
 
   query({
-    "in-0": `Read this text, which is a conversation, do a summary, write the sentiment analysis and detect the following: Nature and impact of sexual harassment Sexism Bullying Exclusion Racism  Homophobia  Strengths of workplace culture Respect and inclusionReporting process Awareness of initiatives to prevent – address bullying, sexual harassment, discrimination Effectiveness and Impact of initiatives.Then Provide Recommendations for change`,
+    "in-0": `Read this text, which is a conversation, do a summary, write a sentiment analysis and detect the following: Nature and impact of sexual harassment, Sexism, Bullying, Exclusion, Racism, Homophobia, Strengths of workplace culture, Respect and inclusion, Reporting process, Awareness of initiatives to prevent/address bullying, sexual harassment and discrimination, Effectiveness and Impact of initiatives. Then Provide Recommendations for change`,
     "indoc-1": text,
   }).then((response) => {
     splitContent(JSON.stringify(response));
